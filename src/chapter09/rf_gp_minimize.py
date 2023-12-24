@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
@@ -9,11 +10,12 @@ from sklearn import model_selection
 
 from skopt import gp_minimize
 from skopt import space
+from skopt.plots import plot_convergence
 
 def optimize(params, param_names, x, y):
 	params = dict(zip(param_names, params))
 	model = ensemble.RandomForestClassifier(**params)
-	kf = model_selection.StratifieldKFold(n_splits=5)
+	kf = model_selection.StratifiedKFold(n_splits=5)
 	accuracies = []
 	for idx in kf.split(X=x, y=y):
 		train_idx, test_idx = idx[0], idx[1]
@@ -22,10 +24,10 @@ def optimize(params, param_names, x, y):
 		xtest = x[test_idx]
 		ytest = y[test_idx]
 		model.fit(xtrain, ytrain)
-		preds = model.predict_proba(xtest)
+		preds = model.predict(xtest)
 		fold_accuracy = metrics.accuracy_score(ytest, preds)
 		accuracies.append(fold_accuracy)
-	return -1 * np.mean()
+	return -1 * np.mean(accuracies)
 
 if __name__ == '__main__':
 	df = pd.read_csv("../../input/mobile_train.csv")
@@ -63,3 +65,5 @@ if __name__ == '__main__':
 		)
 	)
 	print(best_params)
+	plot_convergence(result)
+	plt.savefig("./convergence.png")
