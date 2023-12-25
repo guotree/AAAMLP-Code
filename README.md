@@ -2,7 +2,7 @@
 
 This repository is a self review for simple machine learning concepts.
 
-The codes and notebooks are for *Approaching (almost) any machine learning problem*
+The codes and notebooks are for *Approaching (almost) any machine learning problem* by [Abhishek Thakur](https://github.com/abhishekkrthakur)
 
 ## Environment
 
