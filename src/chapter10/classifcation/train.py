@@ -1,6 +1,5 @@
 import os
 import pandas as pd
-import numpy as np
 import albumentations
 import torch
 from sklearn import metrics
@@ -16,7 +15,7 @@ if __name__ == "__main__":
     df = pd.read_csv(os.path.join(data_path, "siim-png-train-csv/train.csv"))
     images = df.ImageId.values.tolist()
     images = [
-        os.path.join(data_path, "siim-png-images/train_png", i + ".png") for i in images
+        os.path.join(data_path, "siim-png-images/train_png/", i + ".png") for i in images
     ]
     targets = df.target.values
     model = get_model(pretrained=True)
