@@ -15,6 +15,7 @@ from albumentations import (
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 TRAIN_PATH = "/kaggle/input/siim-png-images/train_png/"
 
+
 class SIIMDataset(torch.utils.data.Dataset):
     def __init__(
             self,
@@ -55,6 +56,7 @@ class SIIMDataset(torch.utils.data.Dataset):
 
     def __len__(self):
         return len(self.data)
+
     def __getitem__(self, item):
         img_path = self.data[item]["img_path"]
         mask_path = self.data[item]["mask_path"]
@@ -62,7 +64,7 @@ class SIIMDataset(torch.utils.data.Dataset):
         img = np.array(img)
         mask = Image.open(mask_path).convert("RGB")
         mask = np.array(mask)
-        mask = (mask>=1).astype("float32")
+        mask = (mask >= 1).astype("float32")
         if self.transform is True:
             augmented = self.aug(image=img, mask=mask)
             img = augmented["image"]

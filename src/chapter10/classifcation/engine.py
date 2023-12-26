@@ -3,6 +3,7 @@ import torch.nn as nn
 
 from tqdm import tqdm
 
+
 def train(data_loader, model, optimizer, device):
     model.train()
     for data in data_loader:
@@ -15,6 +16,7 @@ def train(data_loader, model, optimizer, device):
         loss = nn.BCEWithLogitsLoss()(outputs, targets.view(-1, 1))
         loss.backward()
         optimizer.step()
+
 
 def evaluate(data_loader, model, device):
     model.eval()

@@ -1,6 +1,7 @@
 import torch.nn as nn
 import pretrainedmodels
 
+
 def get_model(pretrained):
     if pretrained:
         model = pretrainedmodels.__dict__["resnet18"](

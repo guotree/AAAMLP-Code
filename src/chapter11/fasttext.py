@@ -8,6 +8,7 @@ from sklearn import metrics
 from sklearn import model_selection
 from sklearn.feature_extraction.text import TfidfVectorizer
 
+
 def load_vectors(fname):
     fin = io.open(
         fname,
@@ -22,6 +23,7 @@ def load_vectors(fname):
         tokens = line.rstrip().split(" ")
         data[tokens[0]] = list(map(float, tokens[1:]))
     return data
+
 
 def sentence_to_vec(s, embedding_dict, stop_words, tokenizer):
     words = str(s).lower()
@@ -39,12 +41,13 @@ def sentence_to_vec(s, embedding_dict, stop_words, tokenizer):
     v = M.sum(axis=0)
     return v / np.sqrt((v ** 2).sum())
 
+
 if __name__ == "__main__":
-    df = pd.read_csv("./input/imdb.csv")
+    df = pd.read_csv("../../input/imdb.csv")
     df.sentiment = df.sentiment.apply(lambda x: 1 if x == "positive" else 0)
     df = df.sample(frac=1).reset_index(drop=True)
     print("Loading embeddings")
-    embeddings = load_vectors("./input/wiki-news-300d-1M.vec")
+    embeddings = load_vectors("../../input/wiki-news-300d-1M.vec")
     print("Creating sentence vectors")
     vectors = []
     for review in df.review.values:
@@ -63,9 +66,9 @@ if __name__ == "__main__":
     kf = model_selection.StratifiedKFold(n_splits=5)
     for fold_, (t_, v_) in enumerate(kf.split(X=vectors, y=y)):
         print(f"Trainning fold: {fold_}")
-        xtrain = vectors[t_,:]
+        xtrain = vectors[t_, :]
         ytrain = y[t_]
-        xtest = vectors[v_,:]
+        xtest = vectors[v_, :]
         ytest = y[v_]
         model = linear_model.LogisticRegression(solver="liblinear")
         model.fit(xtrain, ytrain)

@@ -40,7 +40,7 @@ if __name__ == "__main__":
         xtrain = tfidf_vec.transform(train_df.review)
         xtest = tfidf_vec.transform(test_df.review)
         # initialize logistic regression model
-        model = linear_model.LogisticRegression(n_jobs=-1,verbose=1)
+        model = linear_model.LogisticRegression(n_jobs=-1, verbose=1)
         # fit the model on training data reviews and sentiment
         model.fit(xtrain, train_df.sentiment)
         # make predictions on test data
