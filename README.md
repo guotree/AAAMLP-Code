@@ -25,3 +25,6 @@ pip install -r requirements.txt
 - [aaamlp](https://www.kaggle.com/datasets/abhishek/aaamlp)
 - [siim_png_images](https://www.kaggle.com/datasets/abhishek/siim-png-images)
 - [siim-png-train-csv](https://www.kaggle.com/datasets/abhishek/siim-png-train-csv)
+
+## Others
+- [pre-trained word vectors](https://fasttext.cc/docs/en/english-vectors.html)
