@@ -30,7 +30,7 @@ class LSTM(nn.Module):
         x = self.embedding(x)
         x, _ = self.lstm(x)
         avg_pool = torch.mean(x, 1)
-        max_pool = torch.max(x, 1)
+        max_pool, _ = torch.max(x, 1)
         out = torch.cat((avg_pool, max_pool), 1)
         out = self.out(out)
         return out
