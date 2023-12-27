@@ -96,7 +96,7 @@ def run(df, fold):
             break
 
 if __name__ == "__main__":
-    df = pd.read_csv("../../input/imdb_folds.csv")
+    df = pd.read_csv("../../../input/imdb_folds.csv")
     run(df, fold=0)
     run(df, fold=1)
     run(df, fold=2)
